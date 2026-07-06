@@ -1,4 +1,4 @@
-// Header file of main module 
+// Header file of main module (Main module of the program)
 // <===============================================================================>
 
 // Definitions Layer
