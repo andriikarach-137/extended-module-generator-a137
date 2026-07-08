@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #include "main.h" 
 
@@ -14,7 +13,6 @@
 // Module specific definitions, macros 
 // <------------------------------------------------------------------------------->
 #define FLAG "-m"
-#define MAX_MODS_COUNT 10 
 
 // <------------------------------------------------------------------------------->
 
@@ -83,12 +81,25 @@ int main(int argc, char **argv) {
 
     // Checking if main module exists, and setting start index based on that
     bool has_main = !strcmp(FLAG, argv[1]);     // Flag which tells if program has main module
-    int index = has_main ? 2 : 1;               // Starting index of the modules in argv array
+    int index = has_main ? 3 : 2;               // Starting index of the modules in argv array
 
-    // Variables that store header comments in every module
-    char *header_str; 
-    char *interface_str; 
-    char *utils_str; 
+    // Create a main module if one exist
+    if (has_main) {
+        if (!make_main(argv[2])) {
+            printf("Main module couldn't be created.\n"); 
+            exit(EXIT_FAILURE); 
+        }
+    }
+
+    // Create rest of the modules
+    for (int i = index; i < argc; i++) {
+        if (!make_module(argv[i])) {
+            printf("Module %s couldn't be created.\n", argv[i]); 
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    exit(EXIT_SUCCESS); 
 }
 
 // <------------------------------------------------------------------------------->

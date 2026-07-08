@@ -1,11 +1,18 @@
 // Header file of main module (Main module of the program)
 // <===========================================================================>
 
+#include <stdbool.h>
+
 // Definitions Layer
 // <*******************************************************************************>
 
 // Global definitions, macros
 // <------------------------------------------------------------------------------->
+#define C ".c"
+#define H ".h"
+#define UTILS "_utils"
+
+#define FILEMAME_MAX_SIZE 32
 
 // <------------------------------------------------------------------------------->
 
@@ -77,21 +84,62 @@ extern char *main_str_fun;                  // Stores main function comment
 
 // <*******************************************************************************>
 
-// Interface Layer
-// <*******************************************************************************>
-
-// Public function declarations 
-// <------------------------------------------------------------------------------->
-
-// <------------------------------------------------------------------------------->
-
-// <*******************************************************************************>
-
 // Internals Layer 
 // <*******************************************************************************>
 
 // Private function declarations 
 // <------------------------------------------------------------------------------->
+
+/**
+ * This function creates main module with the correct comments structure
+ * 
+ * <char *>     Name of the module
+ * 
+ * <int>        Returns 1 if succeeded, otherwise 0 
+ */
+bool make_main(char *);
+
+/**
+ * This function creates a regular module with the correct comments structure
+ * 
+ * <char *>     Name of the module
+ * 
+ * <bool>       Returns whether module creation was successful
+ */
+bool make_module(char *);
+
+/**
+ * This function creates a header file with the correct comments structure
+ * 
+ * <FILE *>     The file to which comments will be written
+ * <char *>     Name of the module 
+ * <bool>       Flag which tells if the file belongs to main module or not
+ * 
+ * <bool>       Returns whether file creation was successful 
+ */
+bool make_header_file(FILE *, char *, bool);
+
+/**
+ * This function creates an interface file with the correct comments structure
+ * 
+ * <FILE *>     The file to which comments will be written
+ * <char *>     Name of the module 
+ * <bool>       Flag which tells if the file belongs to main module or not
+ * 
+ * <bool>       Returns whether file creation was successful    
+ */
+bool make_interface_file(FILE *, char *, bool); 
+
+/**
+ * This function creates a utility file with the correct comments structure
+ * 
+ * <FILE *>     The file to which comments will be written
+ * <char *>     Name of the module 
+ * <bool>       Flag which tells if the file belongs to main module or not
+ * 
+ * <bool>       Returns whether file creation was successful 
+ */
+bool make_utils_file(FILE *, char *, bool); 
 
 // <------------------------------------------------------------------------------->
 
