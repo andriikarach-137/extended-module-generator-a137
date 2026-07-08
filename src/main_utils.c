@@ -1,5 +1,7 @@
-// Internals file of main module (Main module of the program)
+// Utilities file of main module (Main module of the program)
 // <===============================================================================>
+
+#include "main.h"
 
 // Initialisation Layer 
 // <*******************************************************************************>
