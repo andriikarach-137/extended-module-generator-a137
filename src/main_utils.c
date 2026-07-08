@@ -88,6 +88,14 @@ void make_header_file(FILE *fptr, char *name, bool is_main) {
     fprintf(fptr, "%s\n", delimiter_strs.global_delim_str); 
 }
 
+void make_interface_file(FILE *fptr, char *name, bool is_main) {
+    return; 
+}
+
+void make_utils_file(FILE *fptr, char *name, bool is_main) {
+    return; 
+}
+
 // <------------------------------------------------------------------------------->
 
 // <*******************************************************************************>
