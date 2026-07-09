@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
 
     // Check whether if second argument is flag then there's at least 
     // 3 command-line arguments
-    if (strcmp(FLAG, argv[1]) && argc < 3) {
+    if (!strcmp(FLAG, argv[1]) && argc < 3) {
         printf("Invalid usage.\nDid not provide the name of the main module.\n"); 
         exit(EXIT_FAILURE); 
     }

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "main.h"
 
@@ -17,22 +18,28 @@ bool make_module(char *name, bool is_main) {
     // Open all 3 files
 
     // Open header file
-    FILE *header = fopen(name, "a"); 
+    char header_name[100]; 
+    sprintf(header_name, "%s.h", name); 
+    FILE *header = fopen(header_name, "a"); 
     if (header == NULL) {
         printf("Error. Couldn't create header file of %s module\n", name); 
         return false;  
     }
 
     // Open interface file
-    FILE *interface = fopen(name, "a"); 
+    char interface_name[100];
+    sprintf(interface_name, "%s.c", name);
+    FILE *interface = fopen(interface_name, "a"); 
     if (interface == NULL) {
         printf("Error. Couldn't create interface file of %s module\n", name); 
         return false; 
     }
 
     // Open utilities file 
-    FILE *utilities = fopen(name, "a"); 
-    if (utilities == NULL) {
+    char utils_name[100];  
+    sprintf(utils_name, "%s_utils.c", name);
+    FILE *utils = fopen(utils_name, "a"); 
+    if (utils == NULL) {
         printf("Error. Couldn't create utilities fiel of %s module\n", name); 
         return false; 
     }
@@ -40,7 +47,7 @@ bool make_module(char *name, bool is_main) {
     // Write comments to files 
     make_header_file(header, name, is_main); 
     make_interface_file(interface, name, is_main); 
-    make_utils_file(utilities, name, is_main); 
+    make_utils_file(utils, name, is_main); 
 
     return true; 
 }
@@ -48,9 +55,9 @@ bool make_module(char *name, bool is_main) {
 void make_header_file(FILE *fptr, char *name, bool is_main) {
 
     if (is_main) {
-        fprintf(fptr, "Header file of %s module %s\n", name, main_str);
+        fprintf(fptr, "// Header file of %s module %s\n", name, main_str);
     } else {
-        fprintf(fptr, "Header file of %s module\n", name); 
+        fprintf(fptr, "// Header file of %s module\n", name); 
     }
 
     fprintf(fptr, "%s\n", delimiter_strs.global_delim_str);
@@ -113,9 +120,9 @@ void make_header_file(FILE *fptr, char *name, bool is_main) {
 void make_interface_file(FILE *fptr, char *name, bool is_main) {
     
     if (is_main) {
-        fprintf(fptr, "Interface file of %s module %s\n", name, main_str);
+        fprintf(fptr, "// Interface file of %s module %s\n", name, main_str);
     } else {
-        fprintf(fptr, "Interface file of %s module\n", name); 
+        fprintf(fptr, "// Interface file of %s module\n", name); 
     }
 
     fprintf(fptr, "%s\n", delimiter_strs.global_delim_str);
@@ -169,7 +176,7 @@ void make_utils_file(FILE *fptr, char *name, bool is_main) {
     if (is_main) {
         fprintf(fptr, "// Utilities file of %s module %s\n", name, main_str);
     } else {
-        fprintf(fptr, "// Utilities fiel of %s module\n"); 
+        fprintf(fptr, "// Utilities file of %s module\n", name); 
     }
 
     fprintf(fptr, "%s\n", delimiter_strs.global_delim_str);

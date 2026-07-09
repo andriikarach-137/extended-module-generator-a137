@@ -72,12 +72,12 @@ typedef struct {
 // Global variables
 // <------------------------------------------------------------------------------->
 
-extern HeaderStrings header_strs;           // Stores header file comments
-extern InterfaceStrings interface_strs;     // Stores interface file comments
-extern UtilitiesStrings utilities_strs;     // Stores utilities file comments
-extern DelimitersStrings delimiter_strs;    // Stores delimiter comments
+extern const HeaderStrings header_strs;           // Stores header file comments
+extern const InterfaceStrings interface_strs;     // Stores interface file comments
+extern const UtilitiesStrings utilities_strs;     // Stores utilities file comments
+extern const DelimitersStrings delimiter_strs;    // Stores delimiter comments
 
-extern char *main_str;                      // Stores main file comment
+extern const char *main_str;                      // Stores main file comment
 
 // <------------------------------------------------------------------------------->
 
