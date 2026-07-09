@@ -78,7 +78,6 @@ extern UtilitiesStrings utilities_strs;     // Stores utilities file comments
 extern DelimitersStrings delimiter_strs;    // Stores delimiter comments
 
 extern char *main_str;                      // Stores main file comment
-extern char *main_str_fun;                  // Stores main function comment 
 
 // <------------------------------------------------------------------------------->
 
@@ -91,22 +90,14 @@ extern char *main_str_fun;                  // Stores main function comment
 // <------------------------------------------------------------------------------->
 
 /**
- * This function creates main module with the correct comments structure
- * 
- * <char *>     Name of the module
- * 
- * <int>        Returns 1 if succeeded, otherwise 0 
- */
-bool make_main(char *);
-
-/**
  * This function creates a regular module with the correct comments structure
  * 
  * <char *>     Name of the module
+ * <bool>       Flag that is true if module is main, false otherwise
  * 
  * <bool>       Returns whether module creation was successful
  */
-bool make_module(char *);
+bool make_module(char *, bool);
 
 /**
  * This function creates a header file with the correct comments structure
@@ -114,21 +105,17 @@ bool make_module(char *);
  * <FILE *>     The file to which comments will be written
  * <char *>     Name of the module 
  * <bool>       Flag which tells if the file belongs to main module or not
- * 
- * <bool>       Returns whether file creation was successful 
  */
-bool make_header_file(FILE *, char *, bool);
+void make_header_file(FILE *, char *, bool);
 
 /**
  * This function creates an interface file with the correct comments structure
  * 
  * <FILE *>     The file to which comments will be written
  * <char *>     Name of the module 
- * <bool>       Flag which tells if the file belongs to main module or not
- * 
- * <bool>       Returns whether file creation was successful    
+ * <bool>       Flag which tells if the file belongs to main module or not   
  */
-bool make_interface_file(FILE *, char *, bool); 
+void make_interface_file(FILE *, char *, bool); 
 
 /**
  * This function creates a utility file with the correct comments structure
@@ -136,10 +123,8 @@ bool make_interface_file(FILE *, char *, bool);
  * <FILE *>     The file to which comments will be written
  * <char *>     Name of the module 
  * <bool>       Flag which tells if the file belongs to main module or not
- * 
- * <bool>       Returns whether file creation was successful 
  */
-bool make_utils_file(FILE *, char *, bool); 
+void make_utils_file(FILE *, char *, bool); 
 
 // <------------------------------------------------------------------------------->
 

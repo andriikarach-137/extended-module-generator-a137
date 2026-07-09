@@ -36,6 +36,7 @@ const InterfaceStrings interface_strs = {
     .layer2_str = "// Execution Layer",
     .layer2_p1_str = "// Main function",
     .layer3_str = "// Interface function initialisations", 
+    .layer3_p1_str = "// Interface functions",
 };
 
 const UtilitiesStrings utilities_strs = {
@@ -50,7 +51,6 @@ const DelimitersStrings delimiter_strs = {
 }; 
 
 const char *main_str = "(Main module of the program)"; 
-const char *main_str_fun = "// Main function";
 // <------------------------------------------------------------------------------->
 
 // <*******************************************************************************>
@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
 
     // Create a main module if one exist
     if (has_main) {
-        if (!make_main(argv[2])) {
+        if (!make_module(argv[2], true)) {
             printf("Main module couldn't be created.\n"); 
             exit(EXIT_FAILURE); 
         }
@@ -93,7 +93,7 @@ int main(int argc, char **argv) {
 
     // Create rest of the modules
     for (int i = index; i < argc; i++) {
-        if (!make_module(argv[i])) {
+        if (!make_module(argv[i], false)) {
             printf("Module %s couldn't be created.\n", argv[i]); 
             exit(EXIT_FAILURE);
         }
